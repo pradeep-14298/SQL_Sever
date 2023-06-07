@@ -1,0 +1,46 @@
+declare @dtos datetimeoffset;
+select @dtos;
+--NULL
+
+select @dtos =sysdatetimeoffset();
+select @dtos;
+--2023-05-06 16:38:33.9334002 +05:30
+
+
+select format(@dtos,'d');--5/6/2023
+select format(@dtos,'dd');--06
+select format(@dtos,'ddd');--Sat
+select format(@dtos,'dddd');--Saturday
+
+select format(@dtos,'MM');--05
+select format(@dtos,'MMM');--May
+select format(@dtos,'MMMM');--May
+
+select format(@dtos,'yy');--23
+select format(@dtos,'yyyy');--2023
+
+select format(@dtos,'hh');--04
+select format(@dtos,'HH');--16
+select format(@dtos,'mm');--38
+select format(@dtos,'ss');--33
+select format(@dtos,'fffffff');--9334002
+select format(@dtos,'tt');--PM
+select format(@dtos,'D');--Saturday, May 6, 2023
+select format(@dtos,'t');--4:38 PM
+select format(@dtos,'d','in');--05/06/2023
+select format(@dtos,'d','ta-in');--06-05-2023
+select format(@dtos,'d','us');--05/06/2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+

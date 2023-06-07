@@ -1,0 +1,17 @@
+select convert (int,12.34);
+--12
+
+select convert (int,50.98);
+--50
+
+select convert (decimal(5,2),10.0/3.0);
+--3.33
+
+select convert (nvarchar,45.67);
+--45.67
+
+select convert(datetime2,'2023.11.29 23:59:59.7654321+5:30');
+--2023-11-29 23:59:59.7654321
+
+select convert(datetimeoffset,'2023.11.29 23:59:59.7654321+5:30');
+--2023-11-29 23:59:59.7654321 +05:30

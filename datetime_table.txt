@@ -1,0 +1,35 @@
+drop table if exists dttbl;
+--Command(s) completed successfully.
+
+create table dttbl
+(
+eid int identity (1001,1),
+doj datetimeoffset
+default sysdatetimeoffset(),
+esal money check (esal>=0)
+)
+go
+--Command(s) completed successfully.
+
+insert into dttbl
+(esal)
+values
+(1000000)
+go
+
+--(1 row(s) affected)
+
+insert into dttbl
+(doj,esal)
+values
+('2023.05.06 16:44:53.5900199',200000)
+go
+--(1 row(s) affected)
+
+select *from dttbl;
+/*
+eid	doj	esal
+1001	2023-05-06 17:03:39.7888931 +05:30	1000000.00
+1002	2023-05-06 16:44:53.5900199 +00:00	200000.00
+*/
+
