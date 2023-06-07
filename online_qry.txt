@@ -1,0 +1,39 @@
+--1
+drop database if exists online;
+
+--2
+create database online
+on
+(
+name='online',
+filename='C:\Pradeep\classes\sqlserver\dbs\online.mdf'
+)
+go
+
+--3
+drop table if exists tsttb;
+
+--4
+create table tsttb
+(
+rno int identity(1001,1)primary key not null,
+sname varchar(10)not null,
+m1 numeric(5,2)not null check((m1>0) and (m1<=99.99)),
+m2 numeric(5,2)not null check((m2>0)and (m2<=99.99)),
+total as convert(numeric(5,2),(m1+m2)),
+average as convert(numeric(5,2),(m1+m2)/2),
+result as(iif(m1>34.4 and m2>34.4,'Pass','Fail'))
+);
+
+--5
+select *from tsttb;
+
+--6
+insert into tsttb
+(sname,m1,m2)
+values
+('sathish',70,60),
+('sekar',50,40),
+('pradeep',34,80),
+('vinoth',45,89)
+(gopi,43,55.5);

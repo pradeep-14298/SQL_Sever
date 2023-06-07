@@ -1,0 +1,69 @@
+/*
+how to develop temporary table 
+*/
+
+--1
+drop table if exists ptbl;
+
+--2
+create table ptbl
+(
+rno int identity(1001,1),
+sname varchar(2)not null,
+m1 decimal(5,2)not null,
+m2 decimal(5,2)not null
+)
+go
+
+--3
+insert into ptbl
+(sname,m1,m2)
+values
+('a',36.5,43),
+('b',52,45.5)
+go
+
+--4
+select*from ptbl
+go
+
+--5
+select * into #ttbl from ptbl;
+
+--6
+select *from #ttbl
+go
+
+--7
+select
+rno,
+(m1+m2),'total',
+(m1+m2)/2,'average',
+iif(m1>34.4 and m2>34.4 ,'Pass','Fail'),'result'
+from ptbl
+go
+
+--8
+select*from #ttbl;
+
+--9
+drop table if exists #ttbl;
+
+--10
+select 
+rno,
+(m1+m2)'total',
+(m1+m2)/2'average',
+iif(m1>34.4 and m2>34.4,'Pass','Fail')'result'
+into #ttbl
+from ptbl
+go
+
+--11
+select *from #ttbl;
+
+
+
+
+
+

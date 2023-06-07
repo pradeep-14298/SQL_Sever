@@ -1,0 +1,57 @@
+--1
+drop table if exists uktbl;
+
+--2
+create table uktbl
+(
+rno int identity(1001,1),
+sname varchar(2),
+constraint cnsunisn unique(sname)
+)
+go
+
+--3
+select *from uktbl;
+
+--4
+insert into uktbl
+(sname)
+values
+('a'),
+('b'),
+('c')
+go
+
+--5
+select *from uktbl;
+
+--6
+insert into uktbl
+(sname)
+values
+('d'),
+('e')
+go
+
+--7
+insert into uktbl
+values
+(null)
+go
+
+--8
+insert into uktbl
+values
+('')
+go
+
+--9
+select *from uktbl;
+
+
+
+
+
+
+
+

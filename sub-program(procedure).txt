@@ -1,0 +1,19 @@
+/*
+example for sub-program (category:procedure)
+*/
+
+--1
+drop procedure if exists udpdiv;
+
+--2
+create procedure udpdiv(@i float,@j float)
+as
+begin
+print @i/@j;
+end
+
+--3
+exec udpdiv 10,3
+--3.33333
+
+

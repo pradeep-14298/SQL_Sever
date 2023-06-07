@@ -1,0 +1,121 @@
+/*
+how to develop primary key and foreign(reference)key
+*/
+
+--1
+drop table if exists erctbl;
+
+--2
+drop table if exists erptbl;
+
+--3
+create table erptbl
+(
+rno int primary key,
+sname varchar (2)not null,
+m1 decimal(5,2)not null,
+m2 decimal(5,2)not null,
+)
+go
+
+--4
+drop table if exists erctbl;
+
+--5
+create table erctbl
+(
+rno int references erptbl,
+total decimal(5,2)default 0,
+average decimal(5,2)default 0,
+result char(4)default'Fail'
+)
+go
+
+--6
+select * from erptbl;
+
+--7
+select * from erctbl;
+
+--8
+insert into erptbl
+(rno,sname,m1,m2)
+values
+(1001,'a',36.5,52),
+(1002,'b',45,54.5)
+go
+
+--8
+select *from erptbl;
+
+--9
+select 
+rno,
+(m1+m2),
+(m1+m2)/2,
+iif(m1>34.4 and m2>34.4,'Pass','Fail')
+from erptbl
+go
+
+--10
+insert into erctbl
+select
+rno,
+(m1+m2),
+(m1+m2)/2,
+iif(m1>34.4 and m2>34.4,'Pass','Fail')
+from erptbl
+go
+
+--11
+select *from erctbl;
+
+--12
+select *from erptbl;
+
+--13
+update erptbl set
+m1=20
+where rno=1001;
+go
+
+--13
+select *from erptbl;
+
+--14
+update erctbl set
+total=(m1+m2),
+average=(m1+m2)/2,
+result=iif(m1>34.4 and m2>34.4,'Pass','Fail')
+from erptbl
+where erptbl.rno=erctbl.rno
+go
+
+--15
+select *from erctbl;
+
+--16
+select 
+p.rno,sname,m1,m2,
+total,average,result
+from erptbl p,erctbl c
+where p.rno=c.rno
+go
+
+--17
+drop view if exists ever;
+
+--18
+create view ervr
+as
+select
+p.rno,sname,m1,m2,
+total,average,result
+from erptbl p,erctbl c
+where p.rno=c.rno
+go 
+
+--19
+select *from ervr;
+
+

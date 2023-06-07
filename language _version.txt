@@ -1,0 +1,7 @@
+select @@language,@@version
+go
+
+
+/*
+us_english	Microsoft SQL Server 2016 (RTM) - 13.0.1601.5 (X64)   Apr 29 2016 23:23:58   Copyright (c) Microsoft Corporation  Enterprise Edition (64-bit) on Windows 10 Pro 6.3 <X64> (Build 22621: ) (Hypervisor) 
+*/

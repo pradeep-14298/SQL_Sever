@@ -1,0 +1,124 @@
+--1
+create table eatba
+(
+eid int identity(1001,1)primary key not null,
+ename varchar(10)not null,
+esal numeric(10,2)not null check((esal>0) and (esal<=9999999.99)),
+hra as convert(numeric(10,2),(esal*20.0)/100),
+da as convert(numeric(10,2),(esal*15.0)/100),
+pf as convert(numeric(10,2),(esal*35.0)/100),
+gpay as convert(numeric(10,2),((esal+(esal*20.0)/100)+((esal*15.0)/100))),
+npay as convert(numeric(10,2),((esal+(esal*20.0)/100)+((esal*15.0)/100)-((esal*35.0)/100)))
+)
+go
+
+--2
+insert into eatba
+(ename,esal)
+values
+('pradeep',800000),
+('sathish',1000000),
+('sekar',1600000);
+
+--3
+select*from eatba;
+
+--4
+drop procedure if exists prinseatba;
+
+--5
+create procedure prinseatba
+(
+@ename varchar(10),
+@esal numeric(10,2)
+)
+as
+begin
+insert into eatba (ename,esal)values(@ename,@esal);
+end
+go
+
+--6
+exec dbo.prinseatba 'bala',30000;
+
+--7
+exec dbo.prinseatba 'gopi',45000;
+
+--8
+drop procedure if exists prupdeatba;
+
+--9
+create procedure prupdeatba
+(
+@eid int,
+@ename varchar(10),
+@esal numeric(10,2)
+)
+as
+begin
+update eatba set ename=@ename,esal=@esal 
+where eid=@eid;
+end
+go
+
+--10
+exec dbo.prupdeatba 1001,'siva',50000;
+
+--11
+drop procedure if exists prdeleatba;
+
+--12
+create procedure prdeleatba
+(
+@eid int
+)
+as
+begin
+delete from eatba where eid=@eid;
+end
+go
+
+--13
+select *from eatba;
+
+--14
+exec dbo.prdeleatba 1003;
+
+--15
+drop procedure if exists prseleatba;
+
+--16
+create procedure prseleatba
+as
+begin
+select *from eatba;
+end
+go
+
+--17
+drop procedure if exists prselwhreatba;
+
+--18
+create procedure prselwhreatba
+(@eid int)
+as
+begin
+select *from eatba
+where eid=@eid;
+end
+go
+
+--19
+exec dbo.prselwhreatba 1001;
+
+--20
+exec dbo.prselwhrertba 101;
+
+--21
+exec dbo.prinseatba 'pradeep',40000;
+
+--22
+exec dbo.prinseatba 'karthi',30000;
+
+--23
+select*from eatb;

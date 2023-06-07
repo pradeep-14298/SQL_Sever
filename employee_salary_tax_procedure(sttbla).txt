@@ -1,0 +1,147 @@
+--1
+create table sttbla
+(
+eid int identity (1001,1) primary key not null,
+ename varchar(10),
+esal numeric (11,2) not null check(esal>=0),
+tax10 as (iif(esal < 250000,0,(iif (esal > 250000,25000, (esal-250000)*0.1)))),
+tax20 as (iif(esal<500000,0,(iif(esal > 500000,100000,(esal-500000)*0.2)))),
+tax30 as (iif(esal<1000000,0,(esal-1000000)*0.3)),
+tottax as
+((iif(esal < 250000,0,(iif (esal > 250000,25000, (esal-250000)*0.1))))+
+(iif(esal<500000,0,(iif(esal > 500000,100000,(esal-500000)*0.2))))+
+(iif(esal<1000000,0,(esal-1000000)*0.3))),
+npay as
+(
+esal-
+(
+(iif(esal < 250000,0,(iif (esal > 250000,25000, (esal-250000)*0.1))))+
+(iif(esal<500000,0,(iif(esal > 500000,100000,(esal-500000)*0.2))))+
+(iif(esal<1000000,0,(esal-1000000)*0.3))
+)
+)
+)
+go
+
+--2
+insert into sttbla
+(ename,esal)
+values
+('pradeep',400000),
+('sathish',800000),
+('siva',1600000),
+('milton',200000)
+go
+
+--3
+select*from sttbla
+
+--4
+drop procedure if exists prinssttbla; 
+
+--5
+create procedure prinssttbla
+(
+@ename varchar(10),
+@esal numeric(10,2)
+)
+as
+begin
+insert into sttbla (ename,esal)values(@ename,@esal);
+end
+go
+
+--6
+exec dbo.prinssttbla 'bala',300000;
+
+--7
+exec dbo.prinssttbla 'gopi',450000;
+
+--8
+drop procedure if exists prupdsttbla;
+
+--9
+create procedure prupdsttbla
+(
+@eid int,
+@ename varchar(10),
+@esal numeric(10,2)
+)
+as
+begin
+update sttbla set ename=@ename,esal=@esal 
+where eid=@eid;
+end
+go
+
+--10
+exec dbo.prupdsttbla 1001,'siva',500000;
+exec dbo.prupdsttbla 1003,'pradeep',1200000;
+
+--11
+select*from  sttbla
+
+--12
+drop procedure if exists prdelsttbla;
+
+--13
+create procedure prdelsttbla
+(
+@eid int
+)
+as
+begin
+delete from sttbla where eid=@eid;
+end
+go
+
+--14
+select *from sttbla;
+
+--15
+exec dbo.prdelsttbla 1004;
+
+--16
+drop procedure if exists prselsttbla;
+
+--17
+create procedure prselsttbla
+as
+begin
+select *from sttbla;
+end
+go
+
+--18
+drop procedure if exists prselwhrsttbla;
+
+--19
+create procedure prselwhrsttbla
+(@eid int)
+as
+begin
+select *from sttbla
+where eid=@eid;
+end
+go
+
+--20
+exec dbo.prselwhrsttbla 1001;
+
+--21
+exec dbo.prselwhrsttbla 101;
+
+--22
+select*from sttbla;
+
+
+
+
+
+
+
+
+
+
+
+

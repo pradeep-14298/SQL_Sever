@@ -1,0 +1,133 @@
+--1
+drop table if exists ertba;
+
+--2
+create table ertba
+(
+rno int identity(1001,1)primary key not null,
+sname varchar(10)not null,
+m1 numeric(5,2)not null check((m1>0) and (m1<=99.99)),
+m2 numeric(5,2)not null check((m2>0)and (m2<=99.99)),
+total as convert(numeric(5,2),(m1+m2)),
+average as convert(numeric(5,2),(m1+m2)/2),
+result as(iif(m1>34.4 and m2>34.4,'Pass','Fail'))
+)
+go
+
+--3
+insert into ertba
+(sname,m1,m2)
+values
+('siva',80,90)
+go
+select *from ertba;
+
+--4
+drop procedure if exists usum;
+
+--5
+create procedure usum(@i int,@j int)
+as
+begin
+select @i+@j;
+end
+go
+
+--6
+exec dbo.usum 2,7
+go
+
+--7
+drop procedure if exists prinsertba;
+
+--8
+create procedure prinsertba
+(
+@sname varchar(10),
+@m1 numeric(5,2),
+@m2 numeric(5,2)
+)
+as
+begin
+insert into ertba (sname,m1,m2)values(@ename,@m1,@m2);
+end
+go
+
+--9
+exec dbo.prinsertba 'sathish',80.5,60;
+exec dbo.prinsertba 'pradeep',34,56.5;
+
+--10
+select *from ertba;
+
+--11
+drop procedure if exists prupdertba;
+
+--12
+create procedure prupdertba
+(
+@rno int,
+@sname varchar(10),
+@m1 numeric(5,2),
+@m2 numeric(5,2)
+)
+as
+begin
+update ertba set sname=@sname,m1=@m1,m2=@m2 
+where rno=@rno;
+end
+go
+
+--13
+exec dbo.prupdertba 1003,'gopi',60,80;
+
+--14
+drop procedure if exists prdelertba;
+
+--15
+create procedure prdelertba
+(
+@rno int
+)
+as
+begin
+delete from ertba where rno=@rno;
+end
+go
+
+--16
+exec dbo.prdelertba 1002;
+
+--17
+select *from ertba;
+
+--18
+drop procedure if exists prselertba;
+
+--19
+create procedure prselertba
+as
+begin
+select *from ertba;
+end
+go
+
+--19
+drop procedure if exists prselwhrertba;
+
+--20
+create procedure prselwhrertba
+(@rno int)
+as
+begin
+select *from ertba
+where rno=@rno;
+end
+go
+
+--21
+exec dbo.prselwhrertba 1001;
+
+--22
+exec dbo.prselwhrertba 101;
+

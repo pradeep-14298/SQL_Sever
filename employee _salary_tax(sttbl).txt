@@ -1,0 +1,37 @@
+--1
+create table sttbl
+(
+eid int identity (1001,1) primary key not null,
+ename varchar(10),
+esal numeric (11,2) not null check(esal>=0),
+tax10 as (iif(esal < 250000,0,(iif (esal > 250000,25000, (esal-250000)*0.1)))),
+tax20 as (iif(esal<500000,0,(iif(esal > 500000,100000,(esal-500000)*0.2)))),
+tax30 as (iif(esal<1000000,0,(esal-1000000)*0.3)),
+tottax as
+((iif(esal < 250000,0,(iif (esal > 250000,25000, (esal-250000)*0.1))))+
+(iif(esal<500000,0,(iif(esal > 500000,100000,(esal-500000)*0.2))))+
+(iif(esal<1000000,0,(esal-1000000)*0.3))),
+npay as
+(
+esal-
+(
+(iif(esal < 250000,0,(iif (esal > 250000,25000, (esal-250000)*0.1))))+
+(iif(esal<500000,0,(iif(esal > 500000,100000,(esal-500000)*0.2))))+
+(iif(esal<1000000,0,(esal-1000000)*0.3))
+)
+)
+)
+go
+
+--2
+insert into sttbl
+(ename,esal)
+values
+('pradeep',400000),
+('sathish',800000),
+('siva',1600000),
+('milton',200000)
+go
+
+--3
+select*from sttbl;

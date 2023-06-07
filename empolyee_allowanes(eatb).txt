@@ -1,0 +1,51 @@
+--1 
+use pradeep;
+
+--2
+drop table if exists eatb;
+
+--3
+create table eatb
+(
+eid int identity(1001,1)primary key not null,
+ename varchar(10)not null,
+esal numeric(10,2)not null check((esal>0) and (esal<=9999999.99)),
+hra as convert(numeric(10,2),(esal*20.0)/100),
+da as convert(numeric(10,2),(esal*15.0)/100),
+pf as convert(numeric(10,2),(esal*35.0)/100),
+gpay as convert(numeric(10,2),((esal+(esal*20.0)/100)+((esal*15.0)/100))),
+npay as convert(numeric(10,2),((esal+(esal*20.0)/100)+((esal*15.0)/100)-((esal*35.0)/100)))
+)
+go
+
+--4
+select * from eatb;
+
+--5
+insert into eatb
+(ename,esal)
+values
+('siva',400000);
+
+--6
+select * from eatb;
+
+--7
+insert into eatb
+(ename,esal)
+values
+('pradeep',800000),
+('sathish',1000000),
+('sekar',1600000);
+
+--8
+select * from eatb;
+
+--9
+select id,ename,esal,npay from eatb;
+
+id	ename		esal		npay
+1001	siva		400000.00	400000.000000
+1002	pradeep	800000.00	800000.000000
+1003	sathish	1000000.00	1000000.000000
+1004	sekar		1600000.00	1600000.000000

@@ -1,0 +1,26 @@
+/*
+example for sub-program (category:function)
+*/
+
+--1
+drop function if exists udfdiv;
+
+--2
+create function udfdiv (@i float,@j float)
+returns float
+as
+begin
+return @i/@j;
+end
+
+--3
+print dbo.udfdiv(10,3)
+go
+
+--4
+print dbo.udfdiv(10,3)
+go
+
+--5
+declare @k float;
+select @k k;

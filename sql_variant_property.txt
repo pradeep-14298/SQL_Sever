@@ -1,0 +1,11 @@
+select sql_variant_property(1,'basetype');
+--int
+
+select sql_variant_property(1.0,'basetype');
+--numeric
+
+select sql_variant_property('aa','basetype');
+--varchar
+
+select sql_variant_property(getdate(),'basetype');
+--datetime
