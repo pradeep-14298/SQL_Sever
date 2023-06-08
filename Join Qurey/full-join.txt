@@ -1,0 +1,20 @@
+  select
+a.dname,dtype,dprice
+from 
+atbl a
+full join
+btbl b
+on a.dname=b.dname
+go
+
+
+dname	dtype	dprice
+coffee	hot	NULL
+tea	hot	80.00
+7up	cool	70.00
+pepsi	cool	NULL
+grape juice	soft	NULL
+NULL	NULL	90.00
+NULL	NULL	60.00
+NULL	NULL	50.00
+NULL	NULL	40.00

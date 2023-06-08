@@ -1,0 +1,15 @@
+select
+a.dname,dtype,dprice
+from 
+atbl a
+right join
+btbl b
+on a.dname=b.dname
+go
+NULL	NULL	90.00
+tea	hot	80.00
+7up	cool	70.00
+NULL	NULL	60.00
+NULL	NULL	50.00
+NULL	NULL	40.00
+

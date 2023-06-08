@@ -1,0 +1,49 @@
+drop table if exists ctbl
+go
+Command(s) completed successfully.
+
+icreate table ctbl
+(
+rno int,
+tid int,
+sname varchar(5),
+constraint chkrtid check(rno<>tid)
+)
+go
+Command(s) completed successfully.
+
+insert into ctbl
+(rno,sname)
+values
+(1001,'x5'),
+(1002,'x3')
+go
+
+(2 row(s) affected)
+
+insert into ctbl
+values
+(1003,1001,'x1'),
+(1004,null,'x2'),
+(1005,1003,'x4')
+go
+(3 row(s) affected)
+
+select *from ctbl
+go
+rno	tid	sname
+1001	NULL	x5
+1002	NULL	x3
+1003	1001	x1
+1004	NULL	x2
+1005	1003	x4
+
+select 
+rno,sname,tid
+from ctbl
+where rno>tid
+go
+
+rno	sname	tid
+1003	x1	1001
+1005	x4	1003

@@ -1,0 +1,65 @@
+drop table if exists atbl
+go
+Command(s) completed successfully.
+
+drop table if exists btbl
+go
+Command(s) completed successfully.
+
+create table atbl
+(
+dname varchar(15)not null,
+dtype varchar(5)not null
+)
+go
+Command(s) completed successfully.
+
+create table btbl
+(
+dname varchar(15)not null,
+dprice numeric(5,2)not null
+)
+go
+Command(s) completed successfully.
+
+insert into atbl
+(dname,dtype)
+values
+('coffee','hot'),
+('tea','hot'),
+('7up','cool'),
+('pepsi','cool'),
+('grape juice','soft')
+go
+(5 row(s) affected)
+
+insert into btbl
+(dname,dprice)
+values
+('milk',90),
+('tea',80),
+('7up',70),
+('coke',60),
+('apple juice',50),
+('mango juice',40)
+go
+
+(6 row(s) affected)
+
+select *from atbl;
+dname	dtype
+coffee	hot
+tea	hot
+7up	cool
+pepsi	cool
+grape juice	soft
+
+select *from btbl;
+dname	dprice
+milk	90.00
+tea	80.00
+7up	70.00
+coke	60.00
+apple juice	50.00
+mango juice	40.00
+

@@ -1,0 +1,53 @@
+select*from atbl
+go
+dname	dtype
+coffee	hot
+tea	hot
+7up	cool
+pepsi	cool
+grape juice	soft
+
+
+select*from btbl
+go
+dname	dprice
+milk	90.00
+tea	80.00
+7up	70.00
+coke	60.00
+apple juice	50.00
+mango juice	40.00
+
+select*from atbl,btbl
+go
+dname	dtype	dname	dprice
+coffee	hot	milk	90.00
+coffee	hot	tea	80.00
+coffee	hot	7up	70.00
+coffee	hot	coke	60.00
+coffee	hot	apple juice	50.00
+coffee	hot	mango juice	40.00
+tea	hot	milk	90.00
+tea	hot	tea	80.00
+tea	hot	7up	70.00
+tea	hot	coke	60.00
+tea	hot	apple juice	50.00
+tea	hot	mango juice	40.00
+7up	cool	milk	90.00
+7up	cool	tea	80.00
+7up	cool	7up	70.00
+7up	cool	coke	60.00
+7up	cool	apple juice	50.00
+7up	cool	mango juice	40.00
+pepsi	cool	milk	90.00
+pepsi	cool	tea	80.00
+pepsi	cool	7up	70.00
+pepsi	cool	coke	60.00
+pepsi	cool	apple juice	50.00
+pepsi	cool	mango juice	40.00
+grape juice	soft	milk	90.00
+grape juice	soft	tea	80.00
+grape juice	soft	7up	70.00
+grape juice	soft	coke	60.00
+grape juice	soft	apple juice	50.00
+grape juice	soft	mango juice	40.00

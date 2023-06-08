@@ -1,0 +1,19 @@
+select
+isnull (a.dname,b.dname),dtype,dprice
+from 
+atbl a
+full join
+btbl b
+on a.dname=b.dname
+where (dtype is null)or(dprice is null)
+go
+
+
+(No column name)	dtype	dprice
+coffee	hot	NULL
+pepsi	cool	NULL
+grape juice	soft	NULL
+milk	NULL	90.00
+coke	NULL	60.00
+apple juice	NULL	50.00
+mango juice	NULL	40.00

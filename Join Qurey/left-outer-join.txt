@@ -1,0 +1,16 @@
+select
+a.dname,dtype,dprice
+from 
+atbl a
+full join
+btbl b
+on a.dname=b.dname
+where dtype is  not null
+go
+
+dname	dtype	dprice
+coffee	hot	NULL
+tea	hot	80.00
+7up	cool	70.00
+pepsi	cool	NULL
+grape juice	soft	NULL

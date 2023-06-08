@@ -1,0 +1,22 @@
+select
+a.dname,dtype,dprice
+from atbl a,btbl b
+where a.dname=b.dname
+go
+
+dname	dtype	dprice
+tea	hot	80.00
+7up	cool	70.00
+
+select
+a.dname,dtype,dprice
+from 
+atbl a
+inner join
+btbl b
+on a.dname=b.dname
+go
+
+dname	dtype	dprice
+tea	hot	80.00
+7up	cool	70.00

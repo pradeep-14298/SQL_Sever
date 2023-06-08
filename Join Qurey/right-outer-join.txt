@@ -1,0 +1,15 @@
+select
+b.dname,dtype,dprice
+from 
+atbl a
+full join
+btbl b
+on a.dname=b.dname
+where dtype is null
+go
+
+dname	dtype	dprice
+milk	NULL	90.00
+coke	NULL	60.00
+apple juice	NULL	50.00
+mango juice	NULL	40.00
